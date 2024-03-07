@@ -3,6 +3,14 @@ class Building {
     this._sqft = 0;
 
     this.sqft = sqft;
+
+    if (this.constructor !== Building) {
+      if (typeof this.evacuationWarningMessage !== 'function') {
+        throw new Error(
+          'Class extending Building must override evacuationWarningMessage',
+        );
+      }
+    }
   }
 
   // Sqft Attribute getter and setter
@@ -15,11 +23,6 @@ class Building {
       throw new TypeError('Sqft must be a number');
     }
     this._sqft = value;
-  }
-
-  // Abstract method for evacuation warning message
-  static evacuationWarningMesssage() {
-    throw new Error('Class extending Building must override evacuationWarningMessage');
   }
 }
 
